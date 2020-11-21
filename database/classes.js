@@ -13,7 +13,7 @@ class User{
     constructor(username=null, email=null ){
         this.username = username;
         this.email = email;
-        if(name === true||username  === true|| email  === true){
+        if(username  === true|| email  === true){
             this._id=true;
         }
     }
