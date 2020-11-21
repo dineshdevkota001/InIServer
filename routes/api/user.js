@@ -1,18 +1,21 @@
 var express = require('express');
 var router = express.Router();
-const {addUser} = require('../../database/databaseapi')
+const {addUser, isUserValid} = require('../../database/databaseapi')
 router.get('/',(req,res)=>{
-    return res.send('ola amiga')
+    return false
 })
 
-router.get('/:username',(req,res)=>{
-    return res.send(req.params.username)
+router.get('/:username',async (req,res)=>{
+    let {username} = req.params
+    isUserValid(username).then(isValid => {
+        return res.send(isValid)})
 })
 
 router.post('/signup',(req,res)=>{
     let {body} = req
     let signupdetails = {username: body.username,email: body.email}
-    let returnobj = addUser(signupdetails)
-    res.send(returnobj)
+    addUser(signupdetails).then(returnobj =>{return res.send(returnobj)}
+    )
+    
 })
 module.exports = router;

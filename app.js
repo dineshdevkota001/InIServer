@@ -39,4 +39,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const  ROOT = '/mnt/Multimedia/Documents/Projects/College/InIServer/Assets'
+
 module.exports = app;
